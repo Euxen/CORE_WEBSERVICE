@@ -1,0 +1,1127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://intec.edu.do.org" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://intec.edu.do.org" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://intec.edu.do.org">
+      <s:element name="AccountRegister">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="requestAccountRegister" type="tns:RequestAccountRegister" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="RequestAccountRegister">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:Request">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="Account_Name" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="Account_Type" type="s:string" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="Request">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Identifier" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Pin" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="AccountRegisterResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="AccountRegisterResult" type="tns:ResponseAccountRegister" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ResponseAccountRegister">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:Response" />
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="Response">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Success" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="Message" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="ChangedAccountState">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="requestChangeAccountState" type="tns:RequestChangeAccountState" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="RequestChangeAccountState">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:Request">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="Account_Name" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="Activation" type="s:boolean" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:element name="ChangedAccountStateResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ChangedAccountStateResult" type="tns:ResponseChangedAccountState" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ResponseChangedAccountState">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:Response">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="AccountState" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="TheAccount" type="tns:Account" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="Account">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Account_Name" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Client_ID" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Account_State" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Account_Type" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Balance" type="s:decimal" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="ChangedClientState">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="requestChangeClientState" type="tns:RequestChangeClientState" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="RequestChangeClientState">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:Request">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="Password" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="Activation" type="s:boolean" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:element name="ChangedClientStateResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ChangedClientStateResult" type="tns:ResponseChangedClientState" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ResponseChangedClientState">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:Response">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="TheClient" type="tns:Client" />
+              <s:element minOccurs="0" maxOccurs="1" name="AccountStates" type="s:string" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="Client">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Last_Name" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ID_Number" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Email" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Client_State" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Accounts" type="tns:ArrayOfAccount" />
+          <s:element minOccurs="1" maxOccurs="1" name="Number_Of_Accounts" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Direction" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Pin" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Password" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfAccount">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Account" nillable="true" type="tns:Account" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="ClientAccounts">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="requestClientAccounts" type="tns:RequestClientAccounts" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="RequestClientAccounts">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:Request">
+            <s:sequence>
+              <s:element minOccurs="1" maxOccurs="1" name="IncInactive" type="s:boolean" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:element name="ClientAccountsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ClientAccountsResult" type="tns:ResponseClientAccounts" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ResponseClientAccounts">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:Response">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="Accounts" type="tns:ArrayOfAccount" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:element name="ClientRegister">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="requestClientRegister" type="tns:RequestClientRegister" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="RequestClientRegister">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:Request">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="Name_Regs" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="Lastname_Regs" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="Password_Regs" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="Pin_Regs" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="Email_Regs" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="Direction_Regs" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="AutoGenerate" type="s:boolean" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:element name="ClientRegisterResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ClientRegisterResult" type="tns:ResponseClientRegister" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ResponseClientRegister">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:Response">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="AutoGeneratedPin" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="Auto" type="s:boolean" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:element name="GeneralClientBalance">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="requestGeneralClientBalance" type="tns:RequestGeneralClientBalance" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="RequestGeneralClientBalance">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:Request">
+            <s:sequence>
+              <s:element minOccurs="1" maxOccurs="1" name="IncInactive" type="s:boolean" />
+              <s:element minOccurs="0" maxOccurs="1" name="Password" type="s:string" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:element name="GeneralClientBalanceResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GeneralClientBalanceResult" type="tns:ResponseGeneralClientBalance" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ResponseGeneralClientBalance">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:Response">
+            <s:sequence>
+              <s:element minOccurs="1" maxOccurs="1" name="TotalClient" type="s:decimal" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:element name="ToAllClients">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="requestAllClients" type="tns:RequestAllClients" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="RequestAllClients">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:Request">
+            <s:sequence>
+              <s:element minOccurs="1" maxOccurs="1" name="IncUnsubs" type="s:boolean" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:element name="ToAllClientsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ToAllClientsResult" type="tns:ResponseToAllClients" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ResponseToAllClients">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:Response">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="AllClients" type="tns:ArrayOfClient" />
+              <s:element minOccurs="1" maxOccurs="1" name="Count" type="s:int" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="ArrayOfClient">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Client" nillable="true" type="tns:Client" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="ToAllTransactionsOfClient">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="requestAllTransactionsOfClient" type="tns:RequestAllTransactionsOfClient" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="RequestAllTransactionsOfClient">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:Request" />
+        </s:complexContent>
+      </s:complexType>
+      <s:element name="ToAllTransactionsOfClientResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ToAllTransactionsOfClientResult" type="tns:ResponseToAllTransactionsOfClient" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ResponseToAllTransactionsOfClient">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:Response">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="Transactions" type="tns:ArrayOfTransaction" />
+              <s:element minOccurs="1" maxOccurs="1" name="Trans_Count" type="s:int" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="ArrayOfTransaction">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Transaction" nillable="true" type="tns:Transaction" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="Transaction">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Identifier_root" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Identifier_affected" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Account_root" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Account_affected" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Type" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Balance" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="Transaction_Date" type="s:dateTime" />
+          <s:element minOccurs="0" maxOccurs="1" name="Description1" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="toDeposit">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="requestDeposit" type="tns:RequestDeposit" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="RequestDeposit">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:Request">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="Account_Name" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="Balance_To_Deposit" type="s:decimal" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:element name="toDepositResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="toDepositResult" type="tns:ResponseToDeposit" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ResponseToDeposit">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:Response">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="Identifier" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="Value" type="s:decimal" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:element name="ToInterbankTransferFromBank2ToBank1">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="requestInterbankTransferFromBank2ToBank1" type="tns:RequestInterbankTransferFromBank2toBank1" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="RequestInterbankTransferFromBank2toBank1">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:Request">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="Account_Root" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="Account_To_Affect" type="s:string" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:element name="ToInterbankTransferFromBank2ToBank1Response">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ToInterbankTransferFromBank2ToBank1Result" type="tns:ResponseToInterbankTransferFromBank2toBank1" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ResponseToInterbankTransferFromBank2toBank1">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:Response" />
+        </s:complexContent>
+      </s:complexType>
+      <s:element name="ToLogin">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="requestLogToClient" type="tns:RequestLogToClient" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="RequestLogToClient">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:Request">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="Password" type="s:string" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:element name="ToLoginResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ToLoginResult" type="tns:ResponseToLogin" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ResponseToLogin">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:Response" />
+        </s:complexContent>
+      </s:complexType>
+      <s:element name="ToThirdParties">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="requestThirdPartyTransfer" type="tns:RequestThirdPartyTransfer" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="RequestThirdPartyTransfer">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:Request">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="ThirdPartyName" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="Account_Name" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="Balance_To_Thirds" type="s:decimal" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:element name="ToThirdPartiesResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ToThirdPartiesResult" type="tns:ResponseToThirdParties" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ResponseToThirdParties">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:Response">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="Identifier" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="Balance" type="s:decimal" />
+              <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="Third_party" type="s:string" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:element name="ToTransfer">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="requestTransfer" type="tns:RequestTransfer" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="RequestTransfer">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Identifier_Root" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Identifier_To_Affect" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Account_Root" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Account_To_Affect" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Pin" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Balance_To_Transfer" type="s:decimal" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="ToTransferResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ToTransferResult" type="tns:ResponseToTransfer" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ResponseToTransfer">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:Response">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="First_Identifier" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="Second_Identifier" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="Account_Name1" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="Account_Name2" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="Balance" type="s:decimal" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:element name="ToWithdrawal">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="requestWithdrawal" type="tns:RequestWithdrawal" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="RequestWithdrawal">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:Request">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="Account_Name" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="Balance_To_Withdraw" type="s:decimal" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:element name="ToWithdrawalResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ToWithdrawalResult" type="tns:ResponseToWithdrawal" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ResponseToWithdrawal">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:Response">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="Identifier" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="Value" type="s:decimal" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:element name="VerifyAccountExists">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="requestAccountExists" type="tns:RequestAccountExists" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="RequestAccountExists">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:Request">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="Account_Name" type="s:string" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:element name="VerifyAccountExistsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="VerifyAccountExistsResult" type="tns:ResponseVerifyAccountExists" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ResponseVerifyAccountExists">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:Response">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="Account" type="tns:Account" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:element name="VerifyClientExists">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="requestClientExists" type="tns:RequestClientExists" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="RequestClientExists">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:Request">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="First_Name" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="Last_Name" type="s:string" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:element name="VerifyClientExistsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="VerifyClientExistsResult" type="tns:ResponseVerifyClientExists" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ResponseVerifyClientExists">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:Response">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="Client" type="tns:Client" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:element name="TransferToAccountOfSameClient">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="requestTransfer" type="tns:RequestTransferToAccountsOfSameClient" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="RequestTransferToAccountsOfSameClient">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:Request">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="Main_Account" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="Secondary_Account" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="Balance_To_Transfer" type="s:decimal" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:element name="TransferToAccountOfSameClientResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="TransferToAccountOfSameClientResult" type="tns:ResponseToTransferToAccountsOfSameClient" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ResponseToTransferToAccountsOfSameClient">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:Response">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="Identifier" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="Account_Name1" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="Account_Name2" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="Balance" type="s:decimal" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="AccountRegisterSoapIn">
+    <wsdl:part name="parameters" element="tns:AccountRegister" />
+  </wsdl:message>
+  <wsdl:message name="AccountRegisterSoapOut">
+    <wsdl:part name="parameters" element="tns:AccountRegisterResponse" />
+  </wsdl:message>
+  <wsdl:message name="ChangedAccountStateSoapIn">
+    <wsdl:part name="parameters" element="tns:ChangedAccountState" />
+  </wsdl:message>
+  <wsdl:message name="ChangedAccountStateSoapOut">
+    <wsdl:part name="parameters" element="tns:ChangedAccountStateResponse" />
+  </wsdl:message>
+  <wsdl:message name="ChangedClientStateSoapIn">
+    <wsdl:part name="parameters" element="tns:ChangedClientState" />
+  </wsdl:message>
+  <wsdl:message name="ChangedClientStateSoapOut">
+    <wsdl:part name="parameters" element="tns:ChangedClientStateResponse" />
+  </wsdl:message>
+  <wsdl:message name="ClientAccountsSoapIn">
+    <wsdl:part name="parameters" element="tns:ClientAccounts" />
+  </wsdl:message>
+  <wsdl:message name="ClientAccountsSoapOut">
+    <wsdl:part name="parameters" element="tns:ClientAccountsResponse" />
+  </wsdl:message>
+  <wsdl:message name="ClientRegisterSoapIn">
+    <wsdl:part name="parameters" element="tns:ClientRegister" />
+  </wsdl:message>
+  <wsdl:message name="ClientRegisterSoapOut">
+    <wsdl:part name="parameters" element="tns:ClientRegisterResponse" />
+  </wsdl:message>
+  <wsdl:message name="GeneralClientBalanceSoapIn">
+    <wsdl:part name="parameters" element="tns:GeneralClientBalance" />
+  </wsdl:message>
+  <wsdl:message name="GeneralClientBalanceSoapOut">
+    <wsdl:part name="parameters" element="tns:GeneralClientBalanceResponse" />
+  </wsdl:message>
+  <wsdl:message name="ToAllClientsSoapIn">
+    <wsdl:part name="parameters" element="tns:ToAllClients" />
+  </wsdl:message>
+  <wsdl:message name="ToAllClientsSoapOut">
+    <wsdl:part name="parameters" element="tns:ToAllClientsResponse" />
+  </wsdl:message>
+  <wsdl:message name="ToAllTransactionsOfClientSoapIn">
+    <wsdl:part name="parameters" element="tns:ToAllTransactionsOfClient" />
+  </wsdl:message>
+  <wsdl:message name="ToAllTransactionsOfClientSoapOut">
+    <wsdl:part name="parameters" element="tns:ToAllTransactionsOfClientResponse" />
+  </wsdl:message>
+  <wsdl:message name="toDepositSoapIn">
+    <wsdl:part name="parameters" element="tns:toDeposit" />
+  </wsdl:message>
+  <wsdl:message name="toDepositSoapOut">
+    <wsdl:part name="parameters" element="tns:toDepositResponse" />
+  </wsdl:message>
+  <wsdl:message name="ToInterbankTransferFromBank2ToBank1SoapIn">
+    <wsdl:part name="parameters" element="tns:ToInterbankTransferFromBank2ToBank1" />
+  </wsdl:message>
+  <wsdl:message name="ToInterbankTransferFromBank2ToBank1SoapOut">
+    <wsdl:part name="parameters" element="tns:ToInterbankTransferFromBank2ToBank1Response" />
+  </wsdl:message>
+  <wsdl:message name="ToLoginSoapIn">
+    <wsdl:part name="parameters" element="tns:ToLogin" />
+  </wsdl:message>
+  <wsdl:message name="ToLoginSoapOut">
+    <wsdl:part name="parameters" element="tns:ToLoginResponse" />
+  </wsdl:message>
+  <wsdl:message name="ToThirdPartiesSoapIn">
+    <wsdl:part name="parameters" element="tns:ToThirdParties" />
+  </wsdl:message>
+  <wsdl:message name="ToThirdPartiesSoapOut">
+    <wsdl:part name="parameters" element="tns:ToThirdPartiesResponse" />
+  </wsdl:message>
+  <wsdl:message name="ToTransferSoapIn">
+    <wsdl:part name="parameters" element="tns:ToTransfer" />
+  </wsdl:message>
+  <wsdl:message name="ToTransferSoapOut">
+    <wsdl:part name="parameters" element="tns:ToTransferResponse" />
+  </wsdl:message>
+  <wsdl:message name="ToWithdrawalSoapIn">
+    <wsdl:part name="parameters" element="tns:ToWithdrawal" />
+  </wsdl:message>
+  <wsdl:message name="ToWithdrawalSoapOut">
+    <wsdl:part name="parameters" element="tns:ToWithdrawalResponse" />
+  </wsdl:message>
+  <wsdl:message name="VerifyAccountExistsSoapIn">
+    <wsdl:part name="parameters" element="tns:VerifyAccountExists" />
+  </wsdl:message>
+  <wsdl:message name="VerifyAccountExistsSoapOut">
+    <wsdl:part name="parameters" element="tns:VerifyAccountExistsResponse" />
+  </wsdl:message>
+  <wsdl:message name="VerifyClientExistsSoapIn">
+    <wsdl:part name="parameters" element="tns:VerifyClientExists" />
+  </wsdl:message>
+  <wsdl:message name="VerifyClientExistsSoapOut">
+    <wsdl:part name="parameters" element="tns:VerifyClientExistsResponse" />
+  </wsdl:message>
+  <wsdl:message name="TransferToAccountOfSameClientSoapIn">
+    <wsdl:part name="parameters" element="tns:TransferToAccountOfSameClient" />
+  </wsdl:message>
+  <wsdl:message name="TransferToAccountOfSameClientSoapOut">
+    <wsdl:part name="parameters" element="tns:TransferToAccountOfSameClientResponse" />
+  </wsdl:message>
+  <wsdl:portType name="WebMainMenuSoap">
+    <wsdl:operation name="AccountRegister">
+      <wsdl:input message="tns:AccountRegisterSoapIn" />
+      <wsdl:output message="tns:AccountRegisterSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ChangedAccountState">
+      <wsdl:input message="tns:ChangedAccountStateSoapIn" />
+      <wsdl:output message="tns:ChangedAccountStateSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ChangedClientState">
+      <wsdl:input message="tns:ChangedClientStateSoapIn" />
+      <wsdl:output message="tns:ChangedClientStateSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ClientAccounts">
+      <wsdl:input message="tns:ClientAccountsSoapIn" />
+      <wsdl:output message="tns:ClientAccountsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ClientRegister">
+      <wsdl:input message="tns:ClientRegisterSoapIn" />
+      <wsdl:output message="tns:ClientRegisterSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GeneralClientBalance">
+      <wsdl:input message="tns:GeneralClientBalanceSoapIn" />
+      <wsdl:output message="tns:GeneralClientBalanceSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ToAllClients">
+      <wsdl:input message="tns:ToAllClientsSoapIn" />
+      <wsdl:output message="tns:ToAllClientsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ToAllTransactionsOfClient">
+      <wsdl:input message="tns:ToAllTransactionsOfClientSoapIn" />
+      <wsdl:output message="tns:ToAllTransactionsOfClientSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="toDeposit">
+      <wsdl:input message="tns:toDepositSoapIn" />
+      <wsdl:output message="tns:toDepositSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ToInterbankTransferFromBank2ToBank1">
+      <wsdl:input message="tns:ToInterbankTransferFromBank2ToBank1SoapIn" />
+      <wsdl:output message="tns:ToInterbankTransferFromBank2ToBank1SoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ToLogin">
+      <wsdl:input message="tns:ToLoginSoapIn" />
+      <wsdl:output message="tns:ToLoginSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ToThirdParties">
+      <wsdl:input message="tns:ToThirdPartiesSoapIn" />
+      <wsdl:output message="tns:ToThirdPartiesSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ToTransfer">
+      <wsdl:input message="tns:ToTransferSoapIn" />
+      <wsdl:output message="tns:ToTransferSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ToWithdrawal">
+      <wsdl:input message="tns:ToWithdrawalSoapIn" />
+      <wsdl:output message="tns:ToWithdrawalSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="VerifyAccountExists">
+      <wsdl:input message="tns:VerifyAccountExistsSoapIn" />
+      <wsdl:output message="tns:VerifyAccountExistsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="VerifyClientExists">
+      <wsdl:input message="tns:VerifyClientExistsSoapIn" />
+      <wsdl:output message="tns:VerifyClientExistsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="TransferToAccountOfSameClient">
+      <wsdl:input message="tns:TransferToAccountOfSameClientSoapIn" />
+      <wsdl:output message="tns:TransferToAccountOfSameClientSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="WebMainMenuSoap" type="tns:WebMainMenuSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="AccountRegister">
+      <soap:operation soapAction="http://intec.edu.do.org/AccountRegister" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ChangedAccountState">
+      <soap:operation soapAction="http://intec.edu.do.org/ChangedAccountState" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ChangedClientState">
+      <soap:operation soapAction="http://intec.edu.do.org/ChangedClientState" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ClientAccounts">
+      <soap:operation soapAction="http://intec.edu.do.org/ClientAccounts" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ClientRegister">
+      <soap:operation soapAction="http://intec.edu.do.org/ClientRegister" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GeneralClientBalance">
+      <soap:operation soapAction="http://intec.edu.do.org/GeneralClientBalance" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ToAllClients">
+      <soap:operation soapAction="http://intec.edu.do.org/ToAllClients" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ToAllTransactionsOfClient">
+      <soap:operation soapAction="http://intec.edu.do.org/ToAllTransactionsOfClient" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="toDeposit">
+      <soap:operation soapAction="http://intec.edu.do.org/toDeposit" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ToInterbankTransferFromBank2ToBank1">
+      <soap:operation soapAction="http://intec.edu.do.org/ToInterbankTransferFromBank2ToBank1" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ToLogin">
+      <soap:operation soapAction="http://intec.edu.do.org/ToLogin" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ToThirdParties">
+      <soap:operation soapAction="http://intec.edu.do.org/ToThirdParties" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ToTransfer">
+      <soap:operation soapAction="http://intec.edu.do.org/ToTransfer" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ToWithdrawal">
+      <soap:operation soapAction="http://intec.edu.do.org/ToWithdrawal" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="VerifyAccountExists">
+      <soap:operation soapAction="http://intec.edu.do.org/VerifyAccountExists" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="VerifyClientExists">
+      <soap:operation soapAction="http://intec.edu.do.org/VerifyClientExists" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="TransferToAccountOfSameClient">
+      <soap:operation soapAction="http://intec.edu.do.org/TransferToAccountOfSameClient" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="WebMainMenuSoap12" type="tns:WebMainMenuSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="AccountRegister">
+      <soap12:operation soapAction="http://intec.edu.do.org/AccountRegister" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ChangedAccountState">
+      <soap12:operation soapAction="http://intec.edu.do.org/ChangedAccountState" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ChangedClientState">
+      <soap12:operation soapAction="http://intec.edu.do.org/ChangedClientState" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ClientAccounts">
+      <soap12:operation soapAction="http://intec.edu.do.org/ClientAccounts" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ClientRegister">
+      <soap12:operation soapAction="http://intec.edu.do.org/ClientRegister" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GeneralClientBalance">
+      <soap12:operation soapAction="http://intec.edu.do.org/GeneralClientBalance" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ToAllClients">
+      <soap12:operation soapAction="http://intec.edu.do.org/ToAllClients" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ToAllTransactionsOfClient">
+      <soap12:operation soapAction="http://intec.edu.do.org/ToAllTransactionsOfClient" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="toDeposit">
+      <soap12:operation soapAction="http://intec.edu.do.org/toDeposit" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ToInterbankTransferFromBank2ToBank1">
+      <soap12:operation soapAction="http://intec.edu.do.org/ToInterbankTransferFromBank2ToBank1" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ToLogin">
+      <soap12:operation soapAction="http://intec.edu.do.org/ToLogin" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ToThirdParties">
+      <soap12:operation soapAction="http://intec.edu.do.org/ToThirdParties" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ToTransfer">
+      <soap12:operation soapAction="http://intec.edu.do.org/ToTransfer" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ToWithdrawal">
+      <soap12:operation soapAction="http://intec.edu.do.org/ToWithdrawal" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="VerifyAccountExists">
+      <soap12:operation soapAction="http://intec.edu.do.org/VerifyAccountExists" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="VerifyClientExists">
+      <soap12:operation soapAction="http://intec.edu.do.org/VerifyClientExists" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="TransferToAccountOfSameClient">
+      <soap12:operation soapAction="http://intec.edu.do.org/TransferToAccountOfSameClient" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="WebMainMenu">
+    <wsdl:port name="WebMainMenuSoap" binding="tns:WebMainMenuSoap">
+      <soap:address location="https://localhost:44331/WebMainMenu.asmx" />
+    </wsdl:port>
+    <wsdl:port name="WebMainMenuSoap12" binding="tns:WebMainMenuSoap12">
+      <soap12:address location="https://localhost:44331/WebMainMenu.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

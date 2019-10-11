@@ -59,6 +59,7 @@
     <Reference Include="System.Core" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
+    <Reference Include="System.ServiceModel" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -75,6 +76,11 @@
     <Compile Include="ClaseDeEnumeraciones.cs" />
     <Compile Include="clientTable.cs">
       <DependentUpon>CoreModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Connected Services\COREServices\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
     <Compile Include="COREDB_DataSet.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -119,6 +125,7 @@
     <Compile Include="Requests\RequestLogToClient.cs" />
     <Compile Include="Requests\RequestThirdPartyTransfer.cs" />
     <Compile Include="Requests\RequestTransfer.cs" />
+    <Compile Include="Requests\RequestTransferToAccountsOfSameClient.cs" />
     <Compile Include="Requests\RequestWithdrawal.cs" />
     <Compile Include="Responses\Response.cs" />
     <Compile Include="Responses\ResponseAccountRegister.cs" />
@@ -134,6 +141,7 @@
     <Compile Include="Responses\ResponseToLogin.cs" />
     <Compile Include="Responses\ResponseToThirdParties.cs" />
     <Compile Include="Responses\ResponseToTransfer.cs" />
+    <Compile Include="Responses\ResponseToTransferToAccountsOfSameClient.cs" />
     <Compile Include="Responses\ResponseToWithdrawal.cs" />
     <Compile Include="Responses\ResponseVerifyAccountExists.cs" />
     <Compile Include="Responses\ResponseVerifyClientExists.cs" />
@@ -149,6 +157,109 @@
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>CoreModel.Designer.cs</LastGenOutput>
     </EntityDeploy>
+    <None Include="Connected Services\COREServices\ConsumirDummy.COREServices.AccountRegisterResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\COREServices\ConsumirDummy.COREServices.ChangedAccountStateResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\COREServices\ConsumirDummy.COREServices.ChangedClientStateResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\COREServices\ConsumirDummy.COREServices.ClientAccountsResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\COREServices\ConsumirDummy.COREServices.ClientRegisterResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\COREServices\ConsumirDummy.COREServices.GeneralClientBalanceResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\COREServices\ConsumirDummy.COREServices.ResponseAccountRegister.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\COREServices\ConsumirDummy.COREServices.ResponseChangedAccountState.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\COREServices\ConsumirDummy.COREServices.ResponseChangedClientState.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\COREServices\ConsumirDummy.COREServices.ResponseClientAccounts.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\COREServices\ConsumirDummy.COREServices.ResponseClientRegister.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\COREServices\ConsumirDummy.COREServices.ResponseGeneralClientBalance.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\COREServices\ConsumirDummy.COREServices.ResponseToAllClients.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\COREServices\ConsumirDummy.COREServices.ResponseToAllTransactionsOfClient.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\COREServices\ConsumirDummy.COREServices.ResponseToDeposit.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\COREServices\ConsumirDummy.COREServices.ResponseToInterbankTransferFromBank2toBank1.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\COREServices\ConsumirDummy.COREServices.ResponseToLogin.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\COREServices\ConsumirDummy.COREServices.ResponseToThirdParties.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\COREServices\ConsumirDummy.COREServices.ResponseToTransfer.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\COREServices\ConsumirDummy.COREServices.ResponseToTransferToAccountsOfSameClient.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\COREServices\ConsumirDummy.COREServices.ResponseToWithdrawal.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\COREServices\ConsumirDummy.COREServices.ResponseVerifyAccountExists.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\COREServices\ConsumirDummy.COREServices.ResponseVerifyClientExists.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\COREServices\ConsumirDummy.COREServices.ToAllClientsResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\COREServices\ConsumirDummy.COREServices.ToAllTransactionsOfClientResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\COREServices\ConsumirDummy.COREServices.toDepositResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\COREServices\ConsumirDummy.COREServices.ToInterbankTransferFromBank2ToBank1Response.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\COREServices\ConsumirDummy.COREServices.ToLoginResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\COREServices\ConsumirDummy.COREServices.ToThirdPartiesResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\COREServices\ConsumirDummy.COREServices.ToTransferResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\COREServices\ConsumirDummy.COREServices.ToWithdrawalResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\COREServices\ConsumirDummy.COREServices.TransferToAccountOfSameClientResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\COREServices\ConsumirDummy.COREServices.VerifyAccountExistsResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\COREServices\ConsumirDummy.COREServices.VerifyClientExistsResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\COREServices\WebMainMenu.wsdl" />
     <None Include="COREDB_DataSet.xsc">
       <DependentUpon>COREDB_DataSet.xsd</DependentUpon>
     </None>
@@ -182,6 +293,13 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
+    <None Include="Connected Services\COREServices\WebMainMenu.disco" />
+    <None Include="Connected Services\COREServices\configuration91.svcinfo" />
+    <None Include="Connected Services\COREServices\configuration.svcinfo" />
+    <None Include="Connected Services\COREServices\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
     <Content Include="CoreModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>CoreModel.Context.cs</LastGenOutput>
@@ -195,6 +313,12 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadataStorage Include="Connected Services\COREServices\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

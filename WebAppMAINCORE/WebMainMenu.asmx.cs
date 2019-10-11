@@ -4,8 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Services;
-using WebAppMAINCORE.DataSetDummyTableAdapters;
-using static WebAppMAINCORE.DataSetDummy;
+
 
 namespace WebAppMAINCORE
 {
@@ -320,7 +319,7 @@ namespace WebAppMAINCORE
             identifier = requestDeposit.Identifier;
             name = requestDeposit.Account_Name;
             deposito = requestDeposit.Balance_To_Deposit;
-            description = "";
+            description = TransactionTypes.Deposit(identifier, name, deposito);
             try
             {
                 entities.bankDeposit(deposito, identifier, name, description);
@@ -408,8 +407,9 @@ namespace WebAppMAINCORE
             identification2 = requestTransfer.Identifier_To_Affect;
             name1 = requestTransfer.Account_Root;
             name2 = requestTransfer.Account_To_Affect;
-            description = "";
             transfer_amount = requestTransfer.Balance_To_Transfer;
+
+            description = TransactionTypes.Transfer(identification1, identification2, name1, name2, transfer_amount, false);
             try
             {
                 entities.bankTransfer(transfer_amount, identification1, name1, identification2, name2, description);
@@ -435,7 +435,7 @@ namespace WebAppMAINCORE
             withdraw_amount = requestWithdrawal.Balance_To_Withdraw;
             identification = requestWithdrawal.Identifier;
             name = requestWithdrawal.Account_Name;
-            description = "";
+            description = TransactionTypes.Withdrawal(identification, name, withdraw_amount);
 
             try
             {
@@ -516,6 +516,39 @@ namespace WebAppMAINCORE
             }
 
             return objVerifyClientExists;
+        }
+
+        [WebMethod]
+        public  ResponseToTransferToAccountsOfSameClient TransferToAccountOfSameClient (RequestTransferToAccountsOfSameClient requestTransfer)
+        {
+            ResponseToTransferToAccountsOfSameClient objReturn = new ResponseToTransferToAccountsOfSameClient();
+
+            decimal transfer_amount;
+            //1: ORIGEN (AL QUE SE LE RESTA) 2: DESTINO(EL QUE RECIBE)
+            string identification1, name1, identification2, name2, description;
+            identification1 = requestTransfer.Identifier;
+            identification2 = requestTransfer.Identifier;
+            name1 = requestTransfer.Main_Account;
+            name2 = requestTransfer.Secondary_Account;
+            transfer_amount = requestTransfer.Balance_To_Transfer;
+
+            description = TransactionTypes.Transfer(identification1, identification2, name1, name2, transfer_amount, false);
+
+            try
+            {
+                entities.bankTransfer(transfer_amount, identification1, name1, identification2, name2, description);
+                objReturn.Success = true;
+                objReturn.Message = "La transferencia se hizo con exito!";
+
+            }
+            catch
+            {
+                objReturn.Success = false;
+                objReturn.Message = "La transferencia no se hizo con exito, intentelo mas tarde";
+            }
+
+            return objReturn;
+
         }
     }
 }

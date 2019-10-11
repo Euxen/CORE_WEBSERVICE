@@ -53,7 +53,7 @@ namespace ConsumirDummy
                     {
                         throw new Exception("Success is a boolean, and can only be either true or false.");
                     }
-                    break;
+                    
             }
         }
         #endregion

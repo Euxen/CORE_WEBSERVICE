@@ -65,7 +65,7 @@ namespace ConsumirDummy
             }
 
 
-            catch (Exception ex)
+            catch
             {
                 responseAccount = new ResponseAccountRegister(false, accountToRegister.Identifier);
             }
