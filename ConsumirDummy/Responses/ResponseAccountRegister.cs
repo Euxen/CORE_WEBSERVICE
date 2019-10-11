@@ -45,7 +45,6 @@ namespace ConsumirDummy
 
         public static ResponseAccountRegister ResponseToAccountRegister(RequestAccountRegister accountToRegister)
         {
-            Log.Debug("Se inició el metodo de la 'Capa de Integración'", new Exception("Bank2.ConnectionException.FaultyCore: Core services are down!"));
             ResponseAccountRegister responseAccount;
             CoreProyectoDBEntities entities = new CoreProyectoDBEntities();
 
@@ -63,13 +62,11 @@ namespace ConsumirDummy
                     accountToRegister.Account_Name, accountToRegister.Account_Type);
 
                 responseAccount = new ResponseAccountRegister(true, accountToRegister.Identifier);
-                Log.Info("El 'ResponseAccountRegister' se ha ejecutado exitosamente.");
             }
 
 
             catch (Exception ex)
             {
-                Log.Error("Ocurrió un error al procesar 'ResponseAccountRegister'.", ex);
                 responseAccount = new ResponseAccountRegister(false, accountToRegister.Identifier);
             }
 

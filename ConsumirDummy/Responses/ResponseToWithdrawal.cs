@@ -114,7 +114,6 @@ namespace ConsumirDummy
 
         public static ResponseToWithdrawal WithdrawalResponse(RequestWithdrawal requestToWithdraw)
         {
-            Log.Debug("Se inició el metodo de la 'Capa de Integración'", new Exception("Bank2.ConnectionException.FaultyCore: Core services are down!"));
             if (requestToWithdraw.Pin.Length > 8) requestToWithdraw.Pin = requestToWithdraw.Pin.Substring(0, 7);
 
             ResponseToWithdrawal withdrawalResponse = null;
@@ -187,7 +186,6 @@ namespace ConsumirDummy
 
             catch (Exception ex)
             {
-                Log.Error("Ocurrió un error al procesar 'ResponseToWithdrawal'.", ex);
                 withdrawalResponse = new ResponseToWithdrawal(false, decimal.MinusOne);
             }
 
@@ -196,7 +194,6 @@ namespace ConsumirDummy
                 GC.Collect(); entities.SaveChanges();
             }
 
-            Log.Info("El 'ResponseToWithdrawal' se ha procesado exitosamente.");
             return withdrawalResponse;
         }
     }

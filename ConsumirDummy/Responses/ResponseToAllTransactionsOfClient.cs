@@ -23,7 +23,6 @@ namespace ConsumirDummy
 
         public ResponseToAllTransactionsOfClient(bool success, List<Transaction> transactions_of_client)
         {
-            Log.Debug("Se inició el metodo de la 'Capa de Integración'", new Exception("Bank2.ConnectionException.FaultyCore: Core services are down!"));
             Success = success;
             Message = null;
             Transactions = null;
@@ -102,7 +101,6 @@ namespace ConsumirDummy
 
             catch (Exception ex)
             {
-                Log.Error("Ocurrió un error al procesar 'ResponseToAllTransactionsOfClient'.", ex);
                 allTransactions = new ResponseToAllTransactionsOfClient(false, null);
             }
 
@@ -111,7 +109,6 @@ namespace ConsumirDummy
                 GC.Collect(); entities.SaveChanges();
             }
 
-            Log.Info("El 'ResponseToAllTransactionsOfClient' se ha ejecutado exitosamente.");
             return allTransactions;
         }
         #endregion

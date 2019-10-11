@@ -52,7 +52,6 @@ namespace ConsumirDummy
 
         public static ResponseClientAccounts ResponseToAllClients(RequestClientAccounts requestAll)
         {
-            Log.Debug("Se inició el metodo de la 'Capa de Integración'", new Exception("Bank2.ConnectionException.FaultyCore: Core services are down!"));
             ResponseClientAccounts responseAll = null;
             List<Account> accounts = new List<Account> { };
             CoreProyectoDBEntities entities = new CoreProyectoDBEntities();
@@ -104,7 +103,6 @@ namespace ConsumirDummy
 
             catch (Exception ex)
             {
-                Log.Error("Ocurrió un error al procesar 'ResponseClientAccounts'.", ex);
                 responseAll = new ResponseClientAccounts(null, false);
                 return responseAll;
             }
@@ -114,7 +112,6 @@ namespace ConsumirDummy
                 GC.Collect(); entities.SaveChanges();
             }
 
-            Log.Info("El 'ResponseClientAccounts' se ha ejecutado exitosamente.");
             return responseAll;
         }
     }

@@ -47,7 +47,6 @@ namespace ConsumirDummy
 
         public static ResponseVerifyClientExists ResponseToClientExists(RequestClientExists requestClientExists)
         {
-            Log.Debug("Se inició el metodo de la 'Capa de Integración'", new Exception("Bank2.ConnectionException.FaultyCore: Core services are down!"));
             Client client = new Client(), client_to_send = null;
             CoreProyectoDBEntities entities = new CoreProyectoDBEntities();
             var client_table = entities.clientTables.ToList();
@@ -76,7 +75,6 @@ namespace ConsumirDummy
 
             catch (Exception ex)
             {
-                Log.Error("Ocurrió un error al procesar 'ResponseVerifyClientExists'.", ex);
                 responseClient = new ResponseVerifyClientExists(false, null);
             }
 
@@ -85,7 +83,6 @@ namespace ConsumirDummy
                 GC.Collect(); entities.SaveChanges();
             }
 
-            Log.Info("El 'ResponseVerifyClientExists' se ha ejecutado exitosamente.");
             return responseClient;
         }
     }

@@ -1,5 +1,4 @@
-﻿using Integration.Requests;
-using System;
+﻿using System;
 
 namespace ConsumirDummy
 {

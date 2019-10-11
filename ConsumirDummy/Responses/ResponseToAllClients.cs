@@ -47,7 +47,6 @@ namespace ConsumirDummy
 
         public static ResponseToAllClients ResponseToAllTheClients(RequestAllClients requestAll)
         {
-            Log.Debug("Se inició el metodo de la 'Capa de Integración'", new Exception("Bank2.ConnectionException.FaultyCore: Core services are down!"));
             ResponseToAllClients responseAll = null;
             CoreProyectoDBEntities entities = new CoreProyectoDBEntities();
             var clients_from_clienttable = entities.clientTables.ToList();
@@ -112,7 +111,6 @@ namespace ConsumirDummy
 
             catch (Exception ex)
             {
-                Log.Error("Ocurrió un erro al proocesar 'ResponseToAllClients'.", ex);
                 responseAll = new ResponseToAllClients(allClients);
             }
 
@@ -121,7 +119,6 @@ namespace ConsumirDummy
                 GC.Collect(); entities.SaveChanges();
             }
 
-            Log.Info("El 'ResponseToAllClients' se ha ejecutado exitosamente.");
             return responseAll;
         }
     }

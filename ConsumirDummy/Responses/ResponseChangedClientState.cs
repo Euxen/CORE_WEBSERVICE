@@ -79,7 +79,6 @@ namespace ConsumirDummy
 
         public static ResponseChangedClientState SelectionResponse(RequestChangeClientState requestChange)
         {
-            Log.Debug("Se inició el metodo de la 'Capa de Integración'", new Exception("Bank2.ConnectionException.FaultyCore: Core services are down!"));
             ResponseChangedClientState responseChanged = null;
 
             switch (requestChange.Activation)
@@ -131,7 +130,6 @@ namespace ConsumirDummy
 
             catch (Exception ex)
             {
-                Log.Error("Ocurrió un error al procesar 'ResponseChangedClientState: Unsusbscribe'.", ex);
                 responseChanged = new ResponseChangedClientState(false, false, null);
             }
 
@@ -140,7 +138,6 @@ namespace ConsumirDummy
                 GC.Collect(); entities.SaveChanges();
             }
 
-            Log.Info("El 'ResponseChangedClientState: Unsusbscribe' se ha ejecutado exitosamente.");
             return responseChanged;
         }
 
@@ -178,7 +175,6 @@ namespace ConsumirDummy
 
             catch (Exception ex)
             {
-                Log.Error("Ocurrió un error al procesar 'ResponseChangedClientState: Susbscribe'", ex);
                 responseChanged = new ResponseChangedClientState(false, true, null);
             }
 
@@ -187,7 +183,6 @@ namespace ConsumirDummy
                 GC.Collect(); entities.SaveChanges();
             }
 
-            Log.Info("El 'ResponseChangedClientState: Susbscribe' se ha ejecutado exitosamente.");
             return responseChanged;
         }
     }

@@ -71,7 +71,6 @@ namespace ConsumirDummy
 
         public static ResponseGeneralClientBalance ResponseToGeneralClient(RequestGeneralClientBalance clientBalance)
         {
-            Log.Debug("Se inició el metodo de la 'Capa de Integración'", new Exception("Bank2.ConnectionException.FaultyCore: Core services are down!"));
             decimal total = 0;
             List<accountTable> accounts;
             ResponseGeneralClientBalance responseGeneral = null;
@@ -121,7 +120,6 @@ namespace ConsumirDummy
 
             catch (Exception ex)
             {
-                Log.Error("Ocurrió un error al procesar 'ResponseGeneralClientBalance'", ex);
                 responseGeneral = new ResponseGeneralClientBalance(false);
             }
 
@@ -130,7 +128,6 @@ namespace ConsumirDummy
                 GC.Collect(); entities.SaveChanges();
             }
 
-            Log.Info("El 'ResponseGeneralClientBalance' se ha ejecutado exitosamente.");
             return responseGeneral;
         }
     }

@@ -74,7 +74,6 @@ namespace ConsumirDummy
 
         public static ResponseChangedAccountState SelectionResponse(RequestChangeAccountState requestChange)
         {
-            Log.Debug("Se inició el metodo de la 'Capa de Integración'", new Exception("Bank2.ConnectionException.FaultyCore: Core services are down!"));
             ResponseChangedAccountState responseChanged = null;
 
             switch (requestChange.Activation)
@@ -157,7 +156,6 @@ namespace ConsumirDummy
 
             catch (Exception ex)
             {
-                Log.Error("Ocurrió un error al procesar 'ResponseChangedAccountState: Disable'.", ex);
                 responseChanged = new ResponseChangedAccountState(false, false, null);
             }
 
@@ -166,7 +164,6 @@ namespace ConsumirDummy
                 GC.Collect(); entities.SaveChanges();
             }
 
-            Log.Info("El 'ResponseChangedAccountState: Disable' se ha ejecutado exitosamente.");
             return responseChanged;
         }
 
@@ -225,7 +222,6 @@ namespace ConsumirDummy
 
             catch (Exception ex)
             {
-                Log.Error("Ocurrió un error al procesar 'ResponseChangedAccountState: Enable'.", ex);
                 responseChanged = new ResponseChangedAccountState(false, false, null);
             }
 
@@ -234,7 +230,6 @@ namespace ConsumirDummy
                 GC.Collect(); entities.SaveChanges();
             }
 
-            Log.Info("El 'ResponseChangedAccountState: Enable' se ha ejecutado exitosamente.");
             return responseChanged;
         }
     }

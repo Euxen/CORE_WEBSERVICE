@@ -57,7 +57,6 @@ namespace ConsumirDummy
 
         public static ResponseVerifyAccountExists ResponseToAccountExists(RequestAccountExists requestAccountExists)
         {
-            Log.Debug("Se inició el metodo de la 'Capa de Integración'", new Exception("Bank2.ConnectionException.FaultyCore: Core services are down!"));
             Account account = new Account(), account_to_send = null;
             CoreProyectoDBEntities entities = new CoreProyectoDBEntities();
             var account_table = entities.accountTables.ToList();
@@ -86,7 +85,6 @@ namespace ConsumirDummy
 
             catch (Exception ex)
             {
-                Log.Error("Ocurrió un error al procesar 'ResponseVerifyAccountExists'", ex);
                 responseAccount = new ResponseVerifyAccountExists(false, null);
             }
 
@@ -95,7 +93,6 @@ namespace ConsumirDummy
                 GC.Collect(); entities.SaveChanges();
             }
 
-            Log.Info("El 'ResponseVerifyAccountExists' se ha ejecutado exitosamente.");
             return responseAccount;
         }
     }

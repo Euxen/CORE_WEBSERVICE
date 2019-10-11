@@ -103,7 +103,6 @@ namespace ConsumirDummy
 
         public static ResponseToThirdParties ResponseToThirdPartyTansfer(RequestThirdPartyTransfer requestThirdPartyTransfer)
         {
-            Log.Debug("Se inició el metodo de la 'Capa de Integración'", new Exception("Bank2.ConnectionException.FaultyCore: Core services are down!"));
             if (requestThirdPartyTransfer.Pin.Length > 8) requestThirdPartyTransfer.Pin = requestThirdPartyTransfer.Pin.Substring(0, 7);
 
             List<accountTable> accounts = null;
@@ -180,7 +179,6 @@ namespace ConsumirDummy
 
             catch (Exception ex)
             {
-                Log.Error("Ocurrió un error al procesar 'ResponseToThirdParties'.", ex);
                 responseThird = new ResponseToThirdParties(false, decimal.MinusOne);
             }
 
@@ -189,7 +187,6 @@ namespace ConsumirDummy
                 GC.Collect(); entities.SaveChanges();
             }
 
-            Log.Info("El 'ResponseToThirdParties' se ha ejecutado exitosamente.");
             return responseThird;
         }
     }

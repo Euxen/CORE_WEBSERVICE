@@ -42,7 +42,8 @@ namespace WebAppMAINCORE
                     objAccountRegister.Success = false;
                     objAccountRegister.Message = "Hubo un error en con el proceso de registro";
                 }
-
+                
+            
                 return objAccountRegister;
             }
 
@@ -90,7 +91,7 @@ namespace WebAppMAINCORE
                     objChangedAccountState.AccountState = entities.getAccountState(identifier, name).ToString();
                 }
             }
-            
+
             return objChangedAccountState;
         }
 
@@ -421,7 +422,7 @@ namespace WebAppMAINCORE
                 objToTransfer.Success = false;
                 objToTransfer.Message = "La transferencia no se hizo con exito, intentelo mas tarde";
             }
-            objToTransfer.
+            
             return objToTransfer;
         }
 

@@ -43,7 +43,6 @@ namespace ConsumirDummy
 
         public static ResponseToLogin ResponseToClientLogin(RequestLogToClient requestLog)
         {
-            Log.Debug("Se inició el metodo de la 'Capa de Integración'", new Exception("Bank2.ConnectionException.FaultyCore: Core services are down!"));
             ResponseToLogin response = null;
             bool verified = false;
             CoreProyectoDBEntities entities = new CoreProyectoDBEntities();
@@ -73,7 +72,6 @@ namespace ConsumirDummy
 
             catch (Exception ex)
             {
-                Log.Error("Ocurrió un error al procesar 'ResponseToLogin'", ex);
                 response = new ResponseToLogin(false);
             }
 
@@ -82,7 +80,6 @@ namespace ConsumirDummy
                 GC.Collect(); entities.SaveChanges();
             }
 
-            Log.Info("El 'ResponseToLogin' se ha procesado exitosamente.");
             return response;
         }
     }

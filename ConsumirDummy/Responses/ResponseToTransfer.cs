@@ -118,7 +118,6 @@ namespace ConsumirDummy
 
         public static ResponseToTransfer ResponseToATransfer(RequestTransfer requestTransfer)
         {
-            Log.Debug("Se inició el metodo de la 'Capa de Integración'", new Exception("Bank2.ConnectionException.FaultyCore: Core services are down!"));
             if (requestTransfer.Pin.Length > 8) requestTransfer.Pin = requestTransfer.Pin.Substring(0, 7);
 
             ResponseToTransfer responseTransfer = null;
@@ -171,7 +170,6 @@ namespace ConsumirDummy
 
             catch (Exception ex)
             {
-                Log.Error("Ocurrió un error al procesar 'ResponseToTransfer'", ex);
                 responseTransfer = new ResponseToTransfer(false, decimal.MinusOne);
             }
 
@@ -180,7 +178,6 @@ namespace ConsumirDummy
                 GC.Collect(); entities.SaveChanges();
             }
 
-            Log.Info("El 'ResponseToTransfer' se ha ejecutado exitosamente.");
             return responseTransfer;
         }
     }

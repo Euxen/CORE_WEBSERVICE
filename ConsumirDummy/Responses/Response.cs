@@ -7,11 +7,9 @@ namespace ConsumirDummy
     public class Response
     {
         #region Master Atributes and Constructors
-        private static readonly log4net.ILog log = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
         private bool success;
         private string message; 
 
-        public static ILog Log => log;
 
         public bool Success { get => success; set => success = value; }
 
@@ -43,9 +41,8 @@ namespace ConsumirDummy
                 }
             }
 
-            catch (Exception ex)
+            catch
             {
-                Log.Error("Ocurrió un error al ejecutar el metodo 'IsThePinCorrect',", ex);
                 throw new Exception("Not handled connection!");
             }
 
@@ -54,7 +51,6 @@ namespace ConsumirDummy
                 GC.Collect(); entities.SaveChanges();
             }
 
-            Log.Info("El metodo 'IsThePinCorrect' se ha ejecutado exitosamente.");
             return correctPin;
         }
     }

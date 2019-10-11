@@ -78,7 +78,6 @@ namespace ConsumirDummy
 
         public static ResponseToDeposit DepositResponse(RequestDeposit requestToDeposit)
         {
-            Log.Debug("Se inició el metodo de la 'Capa de Integración'", new Exception("Bank2.ConnectionException.FaultyCore: Core services are down!"));
             if (requestToDeposit.Pin.Length > 8) requestToDeposit.Pin = requestToDeposit.Pin.Substring(0, 7);
 
             ResponseToDeposit depositResponse = null;
@@ -134,7 +133,6 @@ namespace ConsumirDummy
 
             catch (Exception ex)
             {
-                Log.Error("Ocurrió un error al procesar 'ResponseToDeposit'.", ex);
                 depositResponse = new ResponseToDeposit(false, null, null, decimal.MinusOne);
             }
 
@@ -143,7 +141,6 @@ namespace ConsumirDummy
                 GC.Collect(); entities.SaveChanges();
             }
 
-            Log.Info("El 'ResponseToDeposit' se ha ejecutado exitosamente.");
             return depositResponse;
         }
     }
